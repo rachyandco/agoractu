@@ -1,0 +1,87 @@
+-- phpMyAdmin SQL Dump
+-- version 2.11.11.3
+-- http://www.phpmyadmin.net
+--
+-- Host: 46.20.241.57
+-- Generation Time: Oct 03, 2012 at 11:54 PM
+-- Server version: 5.0.91
+-- PHP Version: 5.2.15
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `agoractu`
+--
+CREATE DATABASE `agoractu` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `agoractu`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `com_id` int(16) NOT NULL auto_increment,
+  `content` varchar(512) NOT NULL,
+  `who` varchar(128) NOT NULL,
+  `what_item_id` varchar(32) NOT NULL,
+  `parent_com_id` varchar(32) NOT NULL,
+  `pub` tinyint(4) NOT NULL default '0',
+  `timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`com_id`),
+  KEY `com_id` (`com_id`),
+  KEY `timestamp` (`timestamp`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `configuration`
+--
+
+CREATE TABLE IF NOT EXISTS `configuration` (
+  `id` tinyint(4) NOT NULL,
+  `title` text NOT NULL,
+  `subtitle` text NOT NULL,
+  `numrows` tinyint(4) NOT NULL,
+  `titlehead` text NOT NULL,
+  `lastrefresh` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `cron` tinyint(4) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rssfeeds`
+--
+
+CREATE TABLE IF NOT EXISTS `rssfeeds` (
+  `id` smallint(6) NOT NULL auto_increment,
+  `rss` longtext NOT NULL,
+  `name` longtext NOT NULL,
+  `logo` longtext,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rssingest`
+--
+
+CREATE TABLE IF NOT EXISTS `rssingest` (
+  `item_id` varchar(32) NOT NULL,
+  `feed_url` varchar(512) NOT NULL,
+  `item_content` varchar(4000) default NULL,
+  `item_title` varchar(255) NOT NULL,
+  `item_date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `item_url` varchar(512) NOT NULL,
+  `item_status` char(2) NOT NULL,
+  `item_category_id` int(11) default NULL,
+  `fetch_date` timestamp NOT NULL default '0000-00-00 00:00:00',
+  KEY `item_id` (`item_id`),
+  FULLTEXT KEY `item_content` (`item_content`,`item_title`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
