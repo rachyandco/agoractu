@@ -7,7 +7,7 @@
 /************************************************************************/
 
 $host = "10.10.10.10";
-$database = "dbname";
+$database = "agoractu";
 $user = "dbusername";
 $passwd = "dbpassword";
 
