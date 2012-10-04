@@ -75,13 +75,13 @@ outline:none;
 <ul class="nav">
 <li class="dropdown"><a id="drop1" role="button" class="dropdown-toggle" data-toggle="dropdown" href="#">Les Articles<b class="caret"></b></a>
 	<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-		<li><a tabindex="-1" href="list.php?listtype=0">Tous les derniers</a></li>
-		<li><a tabindex="-1" href="list.php?listtype=1">Les Articles les plus commentés</a></li> 
-		<li><a tabindex="-1" href="list.php?listtype=2">Les derniers commentaires</a></li> 
+		<li role=menuitem><a tabindex="-1" href="list.php?listtype=0">Tous les derniers</a></li>
+		<li role=menuitem><a tabindex="-1" href="list.php?listtype=1">Les Articles les plus commentés</a></li> 
+		<li role=menuitem><a tabindex="-1" href="list.php?listtype=2">Les derniers commentaires</a></li> 
 	</ul></li>
 <li><a href="listfeed.php">Liste des feeds</a></li>  
 <li class="divider-vertical"></li>
-<li><a data-toggle="modal" href="#ModalPropos">A Propos</a></li
+<li><a data-toggle="modal" href="#ModalPropos">A Propos</a></li>
 
 </ul>
 <form class="navbar-search pull-left" method=POST action=list.php>
@@ -101,9 +101,9 @@ outline:none;
 
 <!-- Modal pour a propos -->
 <div class="modal hide fade" id="ModalPropos" tabindex="-1" role="dialog" aria-labelledby="ModalProposLabel" aria-hidden="true">
-    <div class=\"modal-header\">
+    <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="ModalReportLabel">A Propos d'Agoractu</h3>
+    <h3 id="ModalProposLabel">A Propos d'Agoractu</h3>
     </div>
     <div class="modal-body">insert Text here</div>
     <div class="modal-footer">

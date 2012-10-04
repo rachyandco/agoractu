@@ -69,7 +69,7 @@ echo "
 // if not on page 1, don't show back links
 if ($currentpage > 1) {
    // show << link to go back to page 1
-   echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=1&listtype=".$listtype."'><<</a> ";
+   echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=1&amp;listtype=".$listtype."'><<</a> ";
 } // end if 
                  
 // if not on last page, show forward and last page links        
@@ -77,7 +77,7 @@ if ($currentpage != $totalpages) {
    // get next page
    $nextpage = $currentpage + 1;
     // echo forward link for next page 
-   echo " <a class=\"next\" href='{$_SERVER['PHP_SELF']}?currentpage=$nextpage&listtype=".$listtype."'>plus d'articles</a> ";
+   echo " <a class=\"next\" href='{$_SERVER['PHP_SELF']}?currentpage=$nextpage&amp;listtype=".$listtype."'>plus d'articles</a> ";
    
 } // end if
 echo "</div>";
@@ -130,17 +130,17 @@ $nomjournal = mb_convert_encoding($line[1],"UTF-8");
 echo "
 <!--div4-->	<div class=\"row-fluid  well item\"  id=\"post-" .$line[0]. "\">
 <!--div5-->		<div class=\"span10\">
-				<h4> <a name=\"" .$line[0]. "\" href=\"" .$line[5]. "\" target=\"_blank\">" .$line[3]. " </a></h4><small>" .$nomjournal. " - " .$line[4]. "<br>
+				<h4> <a id=\"" .$line[0]. "\" href=\"" .$line[5]. "\" target=\"_blank\">" .$line[3]. " </a></h4><small>" .$nomjournal. " - " .$line[4]. "<br>
 				" .$line[2]. "</small>
 
 <!--div6-->		<div class=\"row-fluid\">
 <!--div7-->			<div class=\"span2\"><a href=\"#myModal" .$line[0]. "\" role=\"button\" class=\"btn\" data-toggle=\"modal\">Réagir!</a></div>";
 //
 // Modal pour comment
-echo " <div class=\"modal hide fade\" id=\"myModal" .$line[0]. "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\"><form method=POST action=insert.php>
+echo " <div class=\"modal hide fade\" id=\"myModal" .$line[0]. "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel" .$line[0]. "\" aria-hidden=\"true\"><form method=POST action=insert.php>
     <div class=\"modal-header\">
     <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">×</button>
-    <h3 id=\"myModalLabel\">Ajouter votre commentaire</h3>
+    <h3 id=\"myModalLabel" .$line[0]. "\">Ajouter votre commentaire</h3>
     </div>
     <div class=\"modal-body\">";
 
@@ -149,7 +149,7 @@ $Ed_query ="select * from `users` where `userid` ='$id'";
 $Ed_result = mysql_query($Ed_query);
 
 	echo "<h2>Votre Commentaire:</h2>";
-	echo "<textarea type=text name=expcontent value=\"\"> </textarea>";
+	echo "<textarea name=expcontent> </textarea>";
 	echo "<h3>Nom ou Pseudo:</h3>
 		<input type=text name=expuser value=\"\">
 		<input type=hidden name=expsource value=list>
@@ -204,10 +204,10 @@ if ($postid == $line[0]){$opencomments = "in";} else {$opencomments = "";}
 				if ($line2[3]==0){
 
 // Modal pour signaler
-echo " <div class=\"modal hide fade\" id=\"ModalReport" .$line2[0]. "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"ModalReportLabel\" aria-hidden=\"true\"><form method=POST action=report.php>
+echo " <div class=\"modal hide fade\" id=\"ModalReport" .$line2[0]. "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"ModalReportLabel" .$line2[0]. "\" aria-hidden=\"true\"><form method=POST action=report.php>
     <div class=\"modal-header\">
     <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">×</button>
-    <h3 id=\"ModalReportLabel\">Signaler un commentaire</h3>
+    <h3 id=\"ModalReportLabel" .$line2[0]. "\">Signaler un commentaire</h3>
     </div>
     <div class=\"modal-body\">";
 
@@ -230,8 +230,8 @@ echo " </div>
     </div>";
 // End Modal pour signaler
 
-				echo " - <a class=\"\"  data-toggle=\"modal\" type=submit value=Save href=\"#ModalReport" .$line2[0]. "\">Signaler</a>";
-					}else{echo "<td><small> - Ce commentaire a été signalé</small>";}
+				echo " - <a class=\"\"  data-toggle=\"modal\" href=\"#ModalReport" .$line2[0]. "\">Signaler</a>";
+					}else{echo "<small> - Ce commentaire a été signalé</small>";}
 				echo "</li> ";
 		
 				}
