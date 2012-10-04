@@ -73,6 +73,34 @@ $Result = mysql_query($Query);
 	//	echo $item_date, "<br/>";
 	//	echo $item_url, "<br/>";
 
+//add special handling for LeTemps (should be put in a pluggin)
+/**/
+if ($line[2] == "Le Temps"){
+preg_match('/uuid(.*)\//i',$item_url, $matches);
+$item_url = "http://m.letemps.ch/Page/Uuid/".$matches[1];
+$item_url = str_replace("0E","-",$item_url);
+$item_url = str_replace("0A","0",$item_url);
+$item_url = str_replace("0C","",$item_url);
+
+$item_content = substr($item_content, 0, strpos($item_content, "<img"));
+
+}
+
+/*
+hack the url
+
+source: Uuid 0Ce1280A2c20E0Addb0E11e20Ead9b0E2e14d57ab16f
+objective: e12802c2-0ddb-11e2-ad9b-2e14d57ab16f
+replace 0E by -
+replace 0A by 0
+replace 0C by nothing
+
+hack the description
+remove from first img tag
+
+*/
+//end special handling for LeTemps
+
 		// Does record already exist? Only insert if new item...
 
 		$item_exists_sql = "SELECT item_id FROM rssingest where item_id = '" . $item_id . "'";

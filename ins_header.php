@@ -56,7 +56,6 @@ filter:alpha(opacity=0);
 outline:none;
 }
 
-.mf-viral{display:none;}
 </style>
 </head>
 <body>
