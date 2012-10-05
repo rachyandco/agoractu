@@ -115,7 +115,7 @@ echo "$Query";
 }
 else {
 // tous les articles par date
-$Query ="select `item_id`,`feed_url`,`item_content`,`item_title`,`item_date`,`item_url` from `rssingest` order by `item_date` desc LIMIT $offset, $rowsperpage";
+$Query ="select `item_id`,`feed_url`,`item_content`,`item_title`,`item_date`,`item_url` from `rssingest` where `item_date` < NOW() order by `item_date` desc LIMIT $offset, $rowsperpage";
 $Result = mysql_query($Query);
 }
 /****** fin choix de la requete sql ******/
