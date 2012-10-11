@@ -6,13 +6,8 @@
 /* This is admin.php - Read the readme.txt file for more information	*/
 /************************************************************************/
 
-
-
-
-
 include ("db.connect.php");
 include ("ins_header.php");
-
 
 //charger la configuration
 $QueryConfig ="select id,title,subtitle,titlehead,numrows from configuration";
@@ -49,24 +44,24 @@ echo $lang['ADMIN_NOCOMMENTS'];
 echo "<h2>".$lang['ADMIN_COMMENTSAVAILABLE']."</h2>";
 	while ($line = mysql_fetch_row($result))
 		{
-echo "<div class=\"well\">";
-echo "<div>".$line[1]."</div>";
-echo "<div>".$lang['ADMIN_AUTHOR']." : ".$line[2]."</div>";
-
-echo "<div class=\"btn-group\">
-<form   style=\"display: inline\" method=\"post\" action=\"".$_SERVER['PHP_SELF']."\">
-<input type=hidden name=commid value=".$line[0].">
-<button class=\"btn btn-danger\"  type=submit name=delete value=delete>".$lang['ADMIN_DELETE']."</button>
-</form>&nbsp;
-<form style=\"display: inline\" method=\"post\" action=\"".$_SERVER['PHP_SELF']."\">
-<input type=hidden name=commid value=".$line[0].">
-<button class=\"btn\"  type=submit name=restore value=restore>".$lang['ADMIN_PUTBACK']."</button>
-</form>
-</div>";
-
-echo "</div>";
+?>
+<div class="well">
+	<div><? echo $line[1];?>"</div>
+		<div><? echo $lang['ADMIN_AUTHOR']; ?> : <? echo $line[2]; ?></div>
+		<div class="btn-group">
+			<form   style="display: inline" method="post" action="<? echo $_SERVER['PHP_SELF']; ?>">
+			<input type=hidden name=commid value="<? echo $line[0]; ?>">
+			<button class="btn btn-danger"  type=submit name=delete value=delete><? echo $lang['ADMIN_DELETE']; ?></button>
+			</form>
+		&nbsp;
+			<form style="display: inline" method="post" action="<? echo $_SERVER['PHP_SELF']; ?>">
+			<input type=hidden name=commid value="<? echo $line[0]; ?>">
+			<button class="btn"  type=submit name=restore value=restore><? echo $lang['ADMIN_PUTBACK']; ?></button>
+			</form>
+		</div>
+	</div>
+<?
 		}
-
 	}
 ?>
 </div>
