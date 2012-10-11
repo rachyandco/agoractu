@@ -6,6 +6,7 @@
 /* This is ins_header.php - Read the readme.txt file for more info	*/
 /************************************************************************/ 
 
+include_once 'lang/lang.fr.php';
 include("password_protect.php");
 
 ?>
@@ -72,19 +73,19 @@ outline:none;
 <a class="brand" href="list.php">AgorActu</a>  
  <div class="nav-collapse collapse">
 <ul class="nav">
-<li class="dropdown"><a id="drop1" role="button" class="dropdown-toggle" data-toggle="dropdown" href="#">Les Articles<b class="caret"></b></a>
+<li class="dropdown"><a id="drop1" role="button" class="dropdown-toggle" data-toggle="dropdown" href="#"><? echo $lang['MENU_ARTICLES']; ?><b class="caret"></b></a>
 	<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-		<li role=menuitem><a tabindex="-1" href="list.php?listtype=0">Tous les derniers</a></li>
-		<li role=menuitem><a tabindex="-1" href="list.php?listtype=1">Les Articles les plus commentés</a></li> 
-		<li role=menuitem><a tabindex="-1" href="list.php?listtype=2">Les derniers commentaires</a></li> 
+		<li role=menuitem><a tabindex="-1" href="list.php?listtype=0"><? echo $lang['MENU_LASTARTICLES']; ?></a></li>
+		<li role=menuitem><a tabindex="-1" href="list.php?listtype=1"><? echo $lang['MENU_MOSTCOMMENTED']; ?></a></li> 
+		<li role=menuitem><a tabindex="-1" href="list.php?listtype=2"><? echo $lang['MENU_LASTCOMMENTED']; ?></a></li> 
 	</ul></li>
-<li><a href="listfeed.php">Liste des feeds</a></li>  
+<li><a href="listfeed.php"><? echo $lang['MENU_FEEDLIST']; ?></a></li>  
 <li class="divider-vertical"></li>
-<li><a data-toggle="modal" href="#ModalPropos">A Propos</a></li>
+<li><a data-toggle="modal" href="#ModalPropos"><? echo $lang['MENU_ABOUT']; ?></a></li>
 
 </ul>
 <form class="navbar-search pull-left" method=POST action=list.php>
-<input type="text" class="search-query" name="search"  value="" placeholder="Search">
+<input type="text" class="search-query" name="search"  value="" placeholder="<? echo $lang['MENU_SEARCH']; ?>">
 <input  class="hidden" type="submit" value="Submit" />
 </form>  
 
@@ -106,7 +107,7 @@ outline:none;
     </div>
     <div class="modal-body">insert Text here</div>
     <div class="modal-footer">
-	<button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+	<button class="btn" data-dismiss="modal" aria-hidden="true"><? echo $lang['MODAL_CLOSE']; ?></button>
     </div>
     </div>
 <!-- End Modal pour a propos -->

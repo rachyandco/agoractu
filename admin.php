@@ -44,23 +44,23 @@ $num_rows = mysql_num_rows($result);
 <?
 if ($num_rows == 0) {
 
-echo "Il n'y pas de commentaires à modérer.";
+echo $lang['ADMIN_NOCOMMENTS'];
 	} else {
-echo "<h2>Commentaires à Modérer</h2>";
+echo "<h2>".$lang['ADMIN_COMMENTSAVAILABLE']."</h2>";
 	while ($line = mysql_fetch_row($result))
 		{
 echo "<div class=\"well\">";
 echo "<div>".$line[1]."</div>";
-echo "<div>Auteur : ".$line[2]."</div>";
+echo "<div>".$lang['ADMIN_AUTHOR']." : ".$line[2]."</div>";
 
 echo "<div class=\"btn-group\">
 <form   style=\"display: inline\" method=\"post\" action=\"".$_SERVER['PHP_SELF']."\">
 <input type=hidden name=commid value=".$line[0].">
-<button class=\"btn btn-danger\"  type=submit name=delete value=delete>Supprimer</button>
+<button class=\"btn btn-danger\"  type=submit name=delete value=delete>".$lang['ADMIN_DELETE']."</button>
 </form>&nbsp;
 <form style=\"display: inline\" method=\"post\" action=\"".$_SERVER['PHP_SELF']."\">
 <input type=hidden name=commid value=".$line[0].">
-<button class=\"btn\"  type=submit name=restore value=restore>Remettre</button>
+<button class=\"btn\"  type=submit name=restore value=restore>".$lang['ADMIN_PUTBACK']."</button>
 </form>
 </div>";
 
@@ -71,29 +71,30 @@ echo "</div>";
 ?>
 </div>
     <div class="span4 well mini-layout-sidebar">
-   <!--Sidebar content-->
-	<h2>Configuration</h2>
-<?
+<!--Sidebar content-->
+<?   
+	echo "<h2>".$lang['ADMIN_PARAM_CONFIG']."</h2>";
+
   while ($lineconfig = mysql_fetch_row($ResultConfig))
    {
 echo "
 <form>
-<label>Titre du Site :</label>
+<label>".$lang['ADMIN_PARAM_TITLE']." :</label>
 <input type=text name=configtitle value=\"".mb_convert_encoding($lineconfig[1],"UTF-8")."\">
-<label>Sous-Titre du Site :</label>
+<label>".$lang['ADMIN_PARAM_SUBTITLE']." :</label>
 <input type=text name=configsubtitle value=\"".mb_convert_encoding($lineconfig[2],"UTF-8")."\">
-<label>Titre du Site - dans la barre du navigateur :</label>
+<label>".$lang['ADMIN_PARAM_TITLELABEL']." :</label>
 <input type=text name=configtitlehead value=\"".mb_convert_encoding($lineconfig[3],"UTF-8")."\">
-<label>Nombre d'articles affichés par page :</label>
+<label>".$lang['ADMIN_PARAM_NBARTICLES']." :</label>
 <input type=text name=confignumrows value=\"".mb_convert_encoding($lineconfig[4],"UTF-8")."\">
-<label>Mise à jour automatique (désactiver si un cronjob est installé sur le serveur) :</label>
+<label>".$lang['ADMIN_PARAM_AUTOUPDATE']." :</label>
 <select name=cron>
-<option value=0>Activée</option>
-<option value=1>Desactivée</option>
+<option value=0>".$lang['ADMIN_PARAM_ACTIVATED']."</option>
+<option value=1>".$lang['ADMIN_PARAM_DEACTIVATED']."</option>
 </select>
 <br>
-<button class=\"btn btn-primary\"  type=submit value=Save>Sauvegarder</button>
-<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">Annuler</button>
+<button class=\"btn btn-primary\"  type=submit value=Save>".$lang['ADMIN_PARAM_SAVE']."</button>
+<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">".$lang['ADMIN_PARAM_CANCEL']."</button>
 </form>
 ";
 }

@@ -15,7 +15,7 @@ echo "<div class=\"row-fluid\">
   <div class=\"span1\">&nbsp;</div>
   <div class=\"span8 post\">";
 
-echo "<h2>La liste des feeds utilisés</h2>";
+echo "<h2>".$lang['FEED_LIST']."</h2>";
  echo "<table  class=\"table\">"; 
 $Query ="select `id`,`rss`,`name`,`logo` from `rssfeeds`";
 $Result = mysql_query($Query);

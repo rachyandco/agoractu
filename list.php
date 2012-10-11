@@ -6,7 +6,6 @@
 /* This is list.php - Read the readme.txt file for more information	*/
 /************************************************************************/
 
-
 include ("db.connect.php");
 include ("ins_header.php");
 include ("ins_parser.php");
@@ -134,13 +133,13 @@ echo "
 				" .$line[2]. "</small>
 
 <!--div6-->		<div class=\"row-fluid\">
-<!--div7-->			<div class=\"span2\"><a href=\"#myModal" .$line[0]. "\" role=\"button\" class=\"btn\" data-toggle=\"modal\">Réagir!</a></div>";
+<!--div7-->			<div class=\"span2\"><a href=\"#myModal" .$line[0]. "\" role=\"button\" class=\"btn\" data-toggle=\"modal\">".$lang['LIST_REACT']."</a></div>";
 //
 // Modal pour comment
 echo " <div class=\"modal hide fade\" id=\"myModal" .$line[0]. "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel" .$line[0]. "\" aria-hidden=\"true\"><form method=POST action=insert.php>
     <div class=\"modal-header\">
     <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">×</button>
-    <h3 id=\"myModalLabel" .$line[0]. "\">Ajouter votre commentaire</h3>
+    <h3 id=\"myModalLabel" .$line[0]. "\">".$lang['MODAL_ADDCOMMENT']."</h3>
     </div>
     <div class=\"modal-body\">";
 
@@ -148,9 +147,9 @@ echo " <div class=\"modal hide fade\" id=\"myModal" .$line[0]. "\" tabindex=\"-1
 $Ed_query ="select * from `users` where `userid` ='$id'";
 $Ed_result = mysql_query($Ed_query);
 
-	echo "<h2>Votre Commentaire:</h2>";
+	echo "<h2>".$lang['MODAL_COMMENTEXT'].":</h2>";
 	echo "<textarea name=expcontent> </textarea>";
-	echo "<h3>Nom ou Pseudo:</h3>
+	echo "<h3>".$lang['MODAL_NAME'].":</h3>
 		<input type=text name=expuser value=\"\">
 		<input type=hidden name=expsource value=list>
 		<input type=hidden name=expcurrent value=".$currentpage.">
@@ -159,8 +158,8 @@ $Ed_result = mysql_query($Ed_query);
 
 echo " </div>
     <div class=\"modal-footer\">
-    	<button class=\"btn btn-primary\"  type=submit value=Save>Sauvegarder</button>
-	<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">Fermer</button>
+    	<button class=\"btn btn-primary\"  type=submit value=Save>".$lang['MODAL_SAVE']."</button>
+	<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">".$lang['MODAL_CLOSE']."</button>
     
     </div></form>
     </div>";
@@ -175,14 +174,14 @@ if ($postid == $line[0]){$opencomments = "in";} else {$opencomments = "";}
 
 			if ($Num_rows2 == 0) {
 				echo "
-<!--div7-->			<div class=\"span2\">0 commentaires.</div>";
+<!--div7-->			<div class=\"span2\">0 ".$lang['LIST_COMMENTS'].".</div>";
 			} 
 			else
 			{
 
 				echo "
 <!--div7-->			<div class=\"accordion\"  id=\"accordion".$line[0]."\"> <div class=\"accordion-group\">
-<div class=\"accordion-heading\"><a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#accordion".$line[0]."\" href=\"#collapse".$line[0]."\">Afficher ".$Num_rows2." commentaire(s) </a></div>
+<div class=\"accordion-heading\"><a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#accordion".$line[0]."\" href=\"#collapse".$line[0]."\">".$lang['LIST_SHOW']." ".$Num_rows2." ".$lang['LIST_COMMENTS2']." </a></div>
 			<div id=\"collapse".$line[0]."\" class=\"accordion-body collapse ".$opencomments."\">
 <div class=\"accordion-inner\"> <ul>";
 
@@ -195,7 +194,7 @@ if ($postid == $line[0]){$opencomments = "in";} else {$opencomments = "";}
 				if (!($line2[2] == NULL)) {
 		 			echo mb_convert_encoding($line2[2],"UTF-8"); 
 					} else {
-				echo "Anonyme";
+				echo $lang['LIST_ANON'];
 					}
 				echo "</i>";
 
@@ -207,11 +206,11 @@ if ($postid == $line[0]){$opencomments = "in";} else {$opencomments = "";}
 echo " <div class=\"modal hide fade\" id=\"ModalReport" .$line2[0]. "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"ModalReportLabel" .$line2[0]. "\" aria-hidden=\"true\"><form method=POST action=report.php>
     <div class=\"modal-header\">
     <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">×</button>
-    <h3 id=\"ModalReportLabel" .$line2[0]. "\">Signaler un commentaire</h3>
+    <h3 id=\"ModalReportLabel" .$line2[0]. "\">".$lang['LIST_FLAGCOMMENT']."</h3>
     </div>
     <div class=\"modal-body\">";
 
-	echo "<h2>Etes vous sûr de vouloir signaler ce commentaire ?</h2>";
+	echo "<h2>".$lang['LIST_FLAGCOMMENT2']."</h2>";
 	echo "  insert Captcha here
 		<input type=hidden name=expcurrent value=".$currentpage.">
 		<input type=hidden name=explisttype value=".$listtype.">
@@ -223,15 +222,15 @@ echo " <div class=\"modal hide fade\" id=\"ModalReport" .$line2[0]. "\" tabindex
 
 echo " </div>
     <div class=\"modal-footer\">
-    	<button class=\"btn btn-primary\"  type=submit value=Save>Signaler</button>
-	<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">Annuler</button>
+    	<button class=\"btn btn-primary\"  type=submit value=Save>".$lang['LIST_FLAG']."</button>
+	<button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">".$lang['MODAL_CANCEL']."</button>
     
     </div></form>
     </div>";
 // End Modal pour signaler
 
-				echo " - <a class=\"\"  data-toggle=\"modal\" href=\"#ModalReport" .$line2[0]. "\">Signaler</a>";
-					}else{echo "<small> - Ce commentaire a été signalé</small>";}
+				echo " - <a class=\"\"  data-toggle=\"modal\" href=\"#ModalReport" .$line2[0]. "\">".$lang['LIST_FLAG']."</a>";
+					}else{echo "<small> - ".$lang['LIST_COMMENTWASFLAGGED'];}
 				echo "</li> ";
 		
 				}
