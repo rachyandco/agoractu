@@ -169,7 +169,7 @@ echo " </div>
 //keep comments open if item selected
 if ($postid == $line[0]){$opencomments = "in";} else {$opencomments = "";}
 	
-			$Query2 ="select `com_id`,`content`,`who`,`pub`,`timestamp` from `comments` where `what_item_id` ='$line[0]'";
+			$Query2 ="select `com_id`,`content`,`who`,`pub`,`timestamp` from `comments` where `pub` in (0,1) and `what_item_id` ='$line[0]'";
 			$Result2 = mysql_query($Query2);
 			$Num_rows2 = mysql_num_rows($Result2);
 

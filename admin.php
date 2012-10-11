@@ -22,7 +22,7 @@ $ResultConfig = mysql_query($QueryConfig);
 if(isset($_POST['delete']))
 {
 $commid = $_POST['commid'];
-$up_query="DELETE FROM comments WHERE com_id ='$commid'";
+$up_query="UPDATE comments SET pub=2 WHERE com_id ='$commid'";
 	mysql_query($up_query) or die('Error, query failed');
 }
 
