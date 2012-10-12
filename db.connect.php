@@ -17,7 +17,7 @@ mysql_select_db($database);
 
 //retrieve Site Parameters
 
-$QueryConfig ="select title,subtitle,titlehead,numrows,lastrefresh,cron from configuration where id = 0";
+$QueryConfig ="select title,subtitle,titlehead,numrows,lastrefresh,cron,lang from configuration where id = 0";
 $ResultConfig = mysql_query($QueryConfig);
 $ArrayConfig = mysql_fetch_row($ResultConfig);
 
@@ -28,4 +28,17 @@ $param['TITLEHEAD'] = mb_convert_encoding($ArrayConfig[2],"UTF-8");
 $param['NUMROWS'] = $ArrayConfig[3];
 $param['LASTREFRESH'] = $ArrayConfig[4];
 $param['CRON'] = $ArrayConfig[5];
+$param['LANG'] = $ArrayConfig[6];
+
+// Parse language file in array
+$langarray = array();
+if ($langdir = opendir('lang')){
+while (false !== ($langdirentry = readdir($langdir))) {
+if ($langdirentry != "." && $langdirentry != "..") {
+	array_push($langarray,$langdirentry);
+}
+
+}
+closedir($langdir);
+}
 ?>

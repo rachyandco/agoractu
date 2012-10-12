@@ -58,6 +58,7 @@ $lang['ADMIN_PARAM_NBARTICLES'] = 'Nombre d\'articles affichés par page';
 $lang['ADMIN_PARAM_AUTOUPDATE'] = 'Mise à jour automatique (désactiver si un cronjob est installé sur le serveur)';
 $lang['ADMIN_PARAM_ACTIVATED'] = 'Activée';
 $lang['ADMIN_PARAM_DEACTIVATED'] = 'Desactivée';
+$lang['ADMIN_PARAM_SITELANGUAGE'] = 'Langue du Site';
 $lang['ADMIN_PARAM_SAVE'] = 'Sauvegarder';
 $lang['ADMIN_PARAM_CANCEL'] = 'Annuler';
 

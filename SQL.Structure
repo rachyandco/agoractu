@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 46.20.241.57
--- Generation Time: Oct 05, 2012 at 10:18 PM
+-- Generation Time: Oct 12, 2012 at 10:29 AM
 -- Server version: 5.0.91
 -- PHP Version: 5.2.15
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   PRIMARY KEY  (`com_id`),
   KEY `com_id` (`com_id`),
   KEY `timestamp` (`timestamp`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
 
 -- --------------------------------------------------------
 
@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `configuration` (
   `titlehead` text NOT NULL,
   `lastrefresh` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `cron` tinyint(4) NOT NULL,
+  `lang` varchar(30) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

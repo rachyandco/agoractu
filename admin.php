@@ -91,7 +91,22 @@ echo "
 <option value=0 ".$cronselectON.">".$lang['ADMIN_PARAM_ACTIVATED']."</option>
 <option value=1 ".$cronselectOFF.">".$lang['ADMIN_PARAM_DEACTIVATED']."</option>
 </select>
-<br>
+";
+
+// Admin Form - Get available languages
+echo "<label>".$lang['ADMIN_PARAM_SITELANGUAGE']." :</label>";
+echo "<select name=lang>";
+foreach($langarray as $langavail){
+if ($param['LANG'] == $langavail)
+	{$langselect = "selected=\"selected\"";
+	} else {
+	$langselect = "";
+}
+echo "<option value=\"".$langavail."\" ".$langselect.">".$langavail."</option>";
+}
+echo "</select>";
+
+echo "<br>
 <button class=\"btn btn-primary\"  type=submit value=Save>".$lang['ADMIN_PARAM_SAVE']."</button>
 <button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">".$lang['ADMIN_PARAM_CANCEL']."</button>
 </form>
