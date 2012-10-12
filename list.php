@@ -10,80 +10,57 @@ include ("db.connect.php");
 include ("ins_header.php");
 include ("ins_parser.php");
 ?>
-<!--div1-->	<div class="container-fluid">
-<!--div2-->	<div class="row-fluid">
-
-<!--div3-->	<div class="span10">
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span10">
 <?
-$search=$_POST["search"];
 
+$search=$_POST["search"];
 $postid=$_GET["postid"];
+
 // recuperer variable dans url pour type de page
 $listtype=$_GET["listtype"];
 if ($listtype === NULL) {$listtype = 0;}
 
-
- // pagination
+// pagination
 // find out how many rows are in the table 
 $sql = "SELECT COUNT(*) FROM rssingest";
 $result = mysql_query($sql) or trigger_error("SQL", E_USER_ERROR);
-
 $r = mysql_fetch_row($result);
 $numrows = $r[0];
 
-// number of rows to show per page
 $rowsperpage = $param['NUMROWS'];
-// find out total pages
 $totalpages = ceil($numrows / $rowsperpage);
-
-// get the current page or set a default
 if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
-   // cast var as int
    $currentpage = (int) $_GET['currentpage'];
 } else {
-   // default page num
    $currentpage = 1;
-} // end if
+}
 
-// if current page is greater than total pages...
 if ($currentpage > $totalpages) {
-   // set current page to last page
    $currentpage = $totalpages;
-} // end if
-// if current page is less than first page...
+}
 if ($currentpage < 1) {
-   // set current page to first page
    $currentpage = 1;
-} // end if
-
-// the offset of the list, based on current page 
+}
 $offset = ($currentpage - 1) * $rowsperpage;
 
-
 /******  build the pagination links ******/
-// range of num links to show
 $range = 2;
-echo "
-<!--div4-->	<div id=\"pagination\" class=\"pagination span10\">";
-// if not on page 1, don't show back links
+echo "<div id=\"pagination\" class=\"pagination span10\">";
 if ($currentpage > 1) {
-   // show << link to go back to page 1
-   echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=1&amp;listtype=".$listtype."'><<</a> ";
-} // end if 
-                 
-// if not on last page, show forward and last page links        
+   echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=1&amp;listtype=".$listtype."'><<</a>";
+}
+                     
 if ($currentpage != $totalpages) {
-   // get next page
    $nextpage = $currentpage + 1;
-    // echo forward link for next page 
-   echo " <a class=\"next\" href='{$_SERVER['PHP_SELF']}?currentpage=$nextpage&amp;listtype=".$listtype."'>plus d'articles</a> ";
+   echo "<a class=\"next\" href='{$_SERVER['PHP_SELF']}?currentpage=$nextpage&amp;listtype=".$listtype."'>plus d'articles</a>";
    
-} // end if
+}
 echo "</div>";
 /****** end build pagination links ******/
 
 /****** choix de la requete sql ******/
-
 
 if (isset($search)) {
 
@@ -109,8 +86,6 @@ $Result = mysql_query($Query);
 echo "$Query";
 
 
-
-
 }
 else {
 // tous les articles par date
@@ -127,13 +102,11 @@ echo "<div id=\"container\">";
 	{
 $nomjournal = mb_convert_encoding($line[1],"UTF-8");
 echo "
-<!--div4-->	<div class=\"row-fluid  well item\"  id=\"post-" .$line[0]. "\">
-<!--div5-->		<div class=\"span10\">
-				<h4> <a id=\"" .$line[0]. "\" href=\"" .$line[5]. "\" target=\"_blank\">" .$line[3]. " </a></h4><small>" .$nomjournal. " - " .$line[4]. "<br>
-				" .$line[2]. "</small>
-
-<!--div6-->		<div class=\"row-fluid\">
-<!--div7-->			<div class=\"span2\"><a href=\"#myModal" .$line[0]. "\" role=\"button\" class=\"btn\" data-toggle=\"modal\">".$lang['LIST_REACT']."</a></div>";
+<div class=\"row-fluid  well item\"  id=\"post-" .$line[0]. "\">
+<div class=\"span10\">
+<h4> <a id=\"" .$line[0]. "\" href=\"" .$line[5]. "\" target=\"_blank\">" .$line[3]. " </a></h4><small>" .$nomjournal. " - " .$line[4]. "<br>" .$line[2]. "</small>
+<div class=\"row-fluid\">
+<div class=\"span2\"><a href=\"#myModal" .$line[0]. "\" role=\"button\" class=\"btn\" data-toggle=\"modal\">".$lang['LIST_REACT']."</a></div>";
 //
 // Modal pour comment
 echo " <div class=\"modal hide fade\" id=\"myModal" .$line[0]. "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel" .$line[0]. "\" aria-hidden=\"true\"><form method=POST action=insert.php>
@@ -173,14 +146,12 @@ if ($postid == $line[0]){$opencomments = "in";} else {$opencomments = "";}
 			$Num_rows2 = mysql_num_rows($Result2);
 
 			if ($Num_rows2 == 0) {
-				echo "
-<!--div7-->			<div class=\"span2\">0 ".$lang['LIST_COMMENTS'].".</div>";
+				echo "<div class=\"span2\">0 ".$lang['LIST_COMMENTS'].".</div>";
 			} 
 			else
 			{
 
-				echo "
-<!--div7-->			<div class=\"accordion\"  id=\"accordion".$line[0]."\"> <div class=\"accordion-group\">
+				echo "<div class=\"accordion\"  id=\"accordion".$line[0]."\"> <div class=\"accordion-group\">
 <div class=\"accordion-heading\"><a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#accordion".$line[0]."\" href=\"#collapse".$line[0]."\">".$lang['LIST_SHOW']." ".$Num_rows2." ".$lang['LIST_COMMENTS2']." </a></div>
 			<div id=\"collapse".$line[0]."\" class=\"accordion-body collapse ".$opencomments."\">
 <div class=\"accordion-inner\"> <ul>";
@@ -230,22 +201,20 @@ echo " </div>
 // End Modal pour signaler
 
 				echo " - <a class=\"\"  data-toggle=\"modal\" href=\"#ModalReport" .$line2[0]. "\">".$lang['LIST_FLAG']."</a>";
-					}else{echo "<small> - ".$lang['LIST_COMMENTWASFLAGGED'];}
+					}else{
+				echo "<small> - ".$lang['LIST_COMMENTWASFLAGGED'];}
 				echo "</li> ";
 		
 				}
-				echo "
-				</ul></div></div></div></div>"; 
+				echo "</ul></div></div></div></div>"; 
 			}
-echo "</div>";
-echo "</div>";
-echo "</div>";
+echo "</div></div></div>";
  }
 echo "</div>";
 /******End Afficher Resultat boucle ******/
 
 
-echo "<!--close div3--></div>";
+echo "</div>";
 
 /* Placeholder for second column
 <!--div3-->	<div class="span2">
@@ -254,9 +223,6 @@ Options
 </div>
 */
 
-echo "<!--close div2--></div>";
-echo "<!--close div1--></div>";
-?>
-<?
+echo "</div></div>";
 include ("ins_footer.php");
 ?>
