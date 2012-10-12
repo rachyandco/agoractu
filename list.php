@@ -32,7 +32,7 @@ $r = mysql_fetch_row($result);
 $numrows = $r[0];
 
 // number of rows to show per page
-$rowsperpage = 10;
+$rowsperpage = $param['NUMROWS'];
 // find out total pages
 $totalpages = ceil($numrows / $rowsperpage);
 

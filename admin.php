@@ -9,10 +9,6 @@
 include ("db.connect.php");
 include ("ins_header.php");
 
-//charger la configuration
-$QueryConfig ="select id,title,subtitle,titlehead,numrows from configuration";
-$ResultConfig = mysql_query($QueryConfig);
-
 //retour de l'action du formulaire
 if(isset($_POST['delete']))
 {
@@ -70,29 +66,36 @@ echo "<h2>".$lang['ADMIN_COMMENTSAVAILABLE']."</h2>";
 <?   
 	echo "<h2>".$lang['ADMIN_PARAM_CONFIG']."</h2>";
 
-  while ($lineconfig = mysql_fetch_row($ResultConfig))
-   {
+if ($param['CRON'] == 0)
+	{
+		$cronselectON = "selected=\"selected\"";
+		$cronselectOFF = "";
+	} else 
+	{
+		$cronselectOFF = "selected=\"selected\"";
+		$cronselectON = "";
+}
+
 echo "
 <form>
 <label>".$lang['ADMIN_PARAM_TITLE']." :</label>
-<input type=text name=configtitle value=\"".mb_convert_encoding($lineconfig[1],"UTF-8")."\">
+<input type=text name=configtitle value=\"".$param['TITLE']."\">
 <label>".$lang['ADMIN_PARAM_SUBTITLE']." :</label>
-<input type=text name=configsubtitle value=\"".mb_convert_encoding($lineconfig[2],"UTF-8")."\">
+<input type=text name=configsubtitle value=\"".$param['SUBTITLE']."\">
 <label>".$lang['ADMIN_PARAM_TITLELABEL']." :</label>
-<input type=text name=configtitlehead value=\"".mb_convert_encoding($lineconfig[3],"UTF-8")."\">
+<input type=text name=configtitlehead value=\"".$param['TITLEHEAD']."\">
 <label>".$lang['ADMIN_PARAM_NBARTICLES']." :</label>
-<input type=text name=confignumrows value=\"".mb_convert_encoding($lineconfig[4],"UTF-8")."\">
+<input type=text name=confignumrows value=\"".$param['NUMROWS']."\">
 <label>".$lang['ADMIN_PARAM_AUTOUPDATE']." :</label>
 <select name=cron>
-<option value=0>".$lang['ADMIN_PARAM_ACTIVATED']."</option>
-<option value=1>".$lang['ADMIN_PARAM_DEACTIVATED']."</option>
+<option value=0 ".$cronselectON.">".$lang['ADMIN_PARAM_ACTIVATED']."</option>
+<option value=1 ".$cronselectOFF.">".$lang['ADMIN_PARAM_DEACTIVATED']."</option>
 </select>
 <br>
 <button class=\"btn btn-primary\"  type=submit value=Save>".$lang['ADMIN_PARAM_SAVE']."</button>
 <button class=\"btn\" data-dismiss=\"modal\" aria-hidden=\"true\">".$lang['ADMIN_PARAM_CANCEL']."</button>
 </form>
 ";
-}
 ?>
     </div>
     </div>

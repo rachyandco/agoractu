@@ -13,7 +13,7 @@ include("password_protect.php");
 <!DOCTYPE HTML>
 <html><head>
 <meta charset="utf-8">
-<title>Agoractu - L'actualité romande sans censure</title>
+<title><? echo $param['TITLEHEAD']; ?></title>
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,8 +94,8 @@ outline:none;
 
 <header class="jumbotron subhead" id="overview">
   <div class="container">
-    <h1>AgorActu</h1>
-    <p class="lead">Le concentré de la presse romande avec des commentaires anonymes.</p>
+    <h1><? echo $param['TITLE']; ?></h1>
+    <p class="lead"><? echo $param['SUBTITLE']; ?></p>
   </div>
 </header>
 
