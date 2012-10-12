@@ -6,7 +6,7 @@
 /* This is ins_header.php - Read the readme.txt file for more info	*/
 /************************************************************************/ 
 
-include_once 'lang/lang.fr.php';
+include_once "lang/".$param['LANG'];
 include("password_protect.php");
 
 ?>
