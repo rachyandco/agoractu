@@ -121,7 +121,7 @@ $Ed_query ="select * from `users` where `userid` ='$id'";
 $Ed_result = mysql_query($Ed_query);
 
 	echo "<h2>".$lang['MODAL_COMMENTEXT'].":</h2>";
-	echo "<textarea name=expcontent> </textarea>";
+	echo "<textarea name=expcontent></textarea>";
 	echo "<h3>".$lang['MODAL_NAME'].":</h3>
 		<input type=text name=expuser value=\"\">
 		<input type=hidden name=expsource value=list>
@@ -182,6 +182,7 @@ echo " <div class=\"modal hide fade\" id=\"ModalReport" .$line2[0]. "\" tabindex
     <div class=\"modal-body\">";
 
 	echo "<h2>".$lang['LIST_FLAGCOMMENT2']."</h2>";
+
 	echo "  insert Captcha here
 		<input type=hidden name=expcurrent value=".$currentpage.">
 		<input type=hidden name=explisttype value=".$listtype.">

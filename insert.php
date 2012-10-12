@@ -18,7 +18,7 @@ $intsource=$_POST["expsource"];
 $intcurrent=$_POST["expcurrent"];
 $intlisttype=$_POST["explisttype"];
 
-if ($intcontent==NULL){
+if (strlen($intcontent) ==0){
 /*alert*/ 
 
 }else{
@@ -26,11 +26,11 @@ if ($intcontent==NULL){
 	mysql_query($up_query) or die('Error, query failed');
 /*	echo $up_query;
 	echo "<br><a href=\"list.php\">Short List</a>"; */
-	echo "<script>
+}	echo "<script>
 <!--
 location.replace(\"".$intsource.".php?currentpage=".$intcurrent."&listtype=".$intlisttype."&postid=".$intitemid."#".$intitemid."\");
 -->
 </script>";
-}
+
 ?>
 
