@@ -36,8 +36,8 @@ $lang['LIST_COMMENTS'] = 'Comments';
 $lang['LIST_COMMENTS2'] = 'comment(s)';
 $lang['LIST_FLAGCOMMENT'] = 'Report a comment';
 $lang['LIST_FLAGQUESTION'] = 'Are you sure you want to report this comment ?';
-$lang['LIST_FLAG'] = 'Flagged';
-$lang['LIST_COMMENTWASFLAGGED'] = 'This comment has been flagged';
+$lang['LIST_FLAG'] = 'Report this comment';
+$lang['LIST_COMMENTWASFLAGGED'] = 'This comment has been reported';
 $lang['LIST_SHOW'] = 'Show';
 $lang['LIST_ANON'] = 'Anonymous';
 
