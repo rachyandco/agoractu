@@ -202,7 +202,7 @@ echo " </div>
 
 				echo " - <a class=\"\"  data-toggle=\"modal\" href=\"#ModalReport" .$line2[0]. "\">".$lang['LIST_FLAG']."</a>";
 					}else{
-				echo "<small> - ".$lang['LIST_COMMENTWASFLAGGED'];}
+				echo "<small> - ".$lang['LIST_COMMENTWASFLAGGED']."</small>";}
 				echo "</li> ";
 		
 				}
